@@ -214,6 +214,7 @@
     @media(max-width:620px){.buy-btn{font-size:23px;padding:18px 20px}}
     @keyframes buyPulse{50%{transform:scale(1.04);box-shadow:0 14px 44px rgba(255,122,0,.75),inset 0 0 0 3px rgba(255,255,255,.5)}}
     .navlinks a.nav-buy{background:linear-gradient(90deg,var(--pink),var(--orange));color:#fff}
+    #soundImg1{border-radius:50%}
     .sound-wrap.alt .sound-logo{border-color:rgba(225,29,116,.6)}
     .sound-wrap.alt .sound-logo .wave{border-color:rgba(225,29,116,.8)!important}
     .sound-wrap.alt .sound-logo.playing{box-shadow:0 0 26px rgba(225,29,116,.85)}
@@ -343,13 +344,22 @@
     <div class="sound-wrap" id="soundWrap">
       <button class="sound-logo idle" id="soundLogo" aria-label="اضغط على اللوجو لسماع الشعار" title="اضغط على اللوجو لسماع الشعار">
         <span class="wave"></span><span class="wave"></span><span class="wave"></span><span class="wave"></span>
-        <img src="assets/logo-transparent.png" alt="شعار">
+        <img id="soundImg1" src="assets/logo-new.png" alt="شعار">
       </button>
       <span class="sound-label" id="soundLabel">اضغط على اللوجو لسماع الشعار <span class="bars"><i></i><i></i><i></i><i></i></span></span>
     </div>
   </div>
 
   <script>
+    // لوجو الدايرة الأولى: بيجرّب الامتدادات المحتملة، ولو مفيش واحد منهم يرجع للوجو القديم
+    (function () {
+      const img = document.getElementById('soundImg1');
+      const list = ['assets/logo-new.png', 'assets/logo-new.jpg', 'assets/logo-new.jpeg', 'assets/logo-new.webp', 'assets/logo-transparent.png'];
+      let i = 0;
+      img.onerror = function () { i++; if (i < list.length) img.src = list[i]; else img.onerror = null; };
+      img.src = list[0];
+    })();
+
     // أصوات الشعارات: كل دايرة بتشغّل صوت وبيعيد نفسه، ولما واحد يشتغل التاني بيقف.
     (function () {
       const bars = '<span class="bars"><i></i><i></i><i></i><i></i></span>';
