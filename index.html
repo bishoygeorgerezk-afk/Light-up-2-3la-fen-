@@ -130,7 +130,8 @@
     @media(prefers-reduced-motion:reduce){*,*:before,*:after{scroll-behavior:auto!important;animation-duration:.01ms!important;transition-duration:.01ms!important}}
 
     /* زر الشعار الصوتي */
-    .sound-wrap{position:fixed;bottom:22px;left:22px;z-index:40;display:flex;align-items:center;gap:14px;direction:ltr}
+    .sound-stack{position:fixed;bottom:22px;left:22px;z-index:40;display:flex;flex-direction:column;gap:18px}
+    .sound-wrap{display:flex;align-items:center;gap:14px;direction:ltr}
     .sound-logo{position:relative;width:84px;height:84px;border-radius:50%;border:1px solid rgba(0,229,255,.5);background:rgba(8,16,31,.9);padding:7px;cursor:pointer;box-shadow:0 0 18px rgba(0,229,255,.25);transition:transform .2s,box-shadow .2s;flex:none}
     .sound-logo:hover{transform:scale(1.07)}
     .sound-logo img{position:relative;z-index:2;width:100%;height:100%;object-fit:contain;display:block}
@@ -151,7 +152,7 @@
     .sound-wrap.on .bars i{animation:bar .8s ease-in-out infinite alternate}
     .sound-wrap.on .bars i:nth-child(2){animation-delay:.2s}.sound-wrap.on .bars i:nth-child(3){animation-delay:.4s}.sound-wrap.on .bars i:nth-child(4){animation-delay:.1s}
     @keyframes bar{from{height:3px}to{height:12px}}
-    @media(max-width:620px){.sound-wrap{bottom:14px;left:12px;gap:10px}.sound-logo{width:66px;height:66px}.sound-label{font-size:13px;padding:9px 14px;white-space:normal;max-width:150px;text-align:center;line-height:1.5}}
+    @media(max-width:620px){.sound-stack{bottom:14px;left:12px;gap:12px}.sound-wrap{gap:10px}.sound-logo{width:66px;height:66px}.sound-label{font-size:13px;padding:9px 14px;white-space:normal;max-width:150px;text-align:center;line-height:1.5}}
     .portal img{cursor:pointer}
 
     /* ===== نسخة شبابية ===== */
@@ -205,11 +206,19 @@
     footer{background:#060311;border-top:4px solid;border-image:linear-gradient(90deg,var(--pink),var(--yel),var(--lime),var(--cyan),var(--purple)) 1}
     .footer-brand span{color:var(--cyan)}
     /* زر حجز التذاكر */
-    .buy-btn{display:inline-flex;align-items:center;justify-content:center;gap:10px;margin-top:22px;padding:15px 34px;border-radius:99px;font:900 19px Cairo,Arial,sans-serif;color:#fff;background:linear-gradient(90deg,var(--pink),var(--orange));box-shadow:0 8px 26px rgba(194,24,91,.55);border:2px solid rgba(255,255,255,.25);animation:buyPulse 2s ease-in-out infinite;transition:filter .2s}
-    .buy-btn:hover{filter:brightness(1.12);transform:translateY(-3px)}
-    @keyframes buyPulse{50%{transform:scale(1.05);box-shadow:0 10px 34px rgba(217,105,10,.7)}}
+    .buy-btn{display:flex;align-items:center;justify-content:center;gap:12px;width:min(100%,480px);margin:26px 0 0;padding:20px 30px;border-radius:24px;font:900 27px Cairo,Arial,sans-serif;color:#fff;text-align:center;background:linear-gradient(90deg,#e11d74,#ff7a00);box-shadow:0 12px 36px rgba(225,29,116,.6),inset 0 0 0 3px rgba(255,255,255,.35);animation:buyPulse 1.8s ease-in-out infinite;transition:filter .2s;position:relative;overflow:hidden}
+    .buy-btn:before{content:"";position:absolute;top:0;left:-60%;width:40%;height:100%;background:linear-gradient(100deg,transparent,rgba(255,255,255,.45),transparent);transform:skewX(-20deg);animation:shine 2.6s ease-in-out infinite}
+    @keyframes shine{to{left:140%}}
+    .buy-btn:hover{filter:brightness(1.12)}
+    .invite .buy-btn{margin:28px auto 0}
+    @media(max-width:620px){.buy-btn{font-size:23px;padding:18px 20px}}
+    @keyframes buyPulse{50%{transform:scale(1.04);box-shadow:0 14px 44px rgba(255,122,0,.75),inset 0 0 0 3px rgba(255,255,255,.5)}}
     .navlinks a.nav-buy{background:linear-gradient(90deg,var(--pink),var(--orange));color:#fff}
-    .invite .buy-btn{margin-top:26px}
+    .sound-wrap.alt .sound-logo{border-color:rgba(225,29,116,.6)}
+    .sound-wrap.alt .sound-logo .wave{border-color:rgba(225,29,116,.8)!important}
+    .sound-wrap.alt .sound-logo.playing{box-shadow:0 0 26px rgba(225,29,116,.85)}
+    .sound-wrap.alt .sound-label,.sound-wrap.alt.on .sound-label{background:linear-gradient(90deg,#e11d74,#7c3aed);color:#fff}
+    .sound-wrap.alt .bars i{background:#fff}
   </style>
 </head>
 <body>
@@ -269,7 +278,7 @@
           <div class="timebox"><b id="minutes">--</b><span>دقائق</span></div>
           <div class="timebox"><b id="seconds">--</b><span>ثواني</span></div>
         </div>
-        <a class="buy-btn" href="https://bishoygeorgerezk-afk.github.io/tickets-3la-fen/" target="_blank" rel="noopener">🎟️ احجز تذكرتك الآن</a>
+        <a class="buy-btn" href="https://bishoygeorgerezk-afk.github.io/tickets-3la-fen/" target="_blank" rel="noopener">🎟️ احجز تذكرتك الآن 🎟️</a>
       </div>
     </div>
 
@@ -309,7 +318,7 @@
       <h2>مستنيينك… على فين؟</h2>
       <p>يتشرف اجتماع الشباب والخريجين بدعوة نيافتك لحضور كرنفال <strong style="color:#ffca69">على فين — Light Up</strong>.</p>
       <div class="date-pill">السبت 5 / 12 / 2026</div>
-      <a class="buy-btn" href="https://bishoygeorgerezk-afk.github.io/tickets-3la-fen/" target="_blank" rel="noopener">🎟️ احجز تذكرتك الآن</a>
+      <a class="buy-btn" href="https://bishoygeorgerezk-afk.github.io/tickets-3la-fen/" target="_blank" rel="noopener">🎟️ احجز تذكرتك الآن 🎟️</a>
     </div>
   </main>
 
@@ -322,48 +331,73 @@
   </footer>
 
   <audio id="logoSound" src="assets/logo-sound.mp3" preload="auto" loop></audio>
-  <div class="sound-wrap" id="soundWrap">
-    <button class="sound-logo idle" id="soundLogo" aria-label="اضغط على اللوجو لسماع الشعار" title="اضغط على اللوجو لسماع الشعار">
-      <span class="wave"></span><span class="wave"></span><span class="wave"></span><span class="wave"></span>
-      <img src="assets/logo-transparent.png" alt="شعار">
-    </button>
-    <span class="sound-label" id="soundLabel">اضغط على اللوجو لسماع الشعار <span class="bars"><i></i><i></i><i></i><i></i></span></span>
+  <audio id="logoSound2" src="assets/logo-sound-2.mp3" preload="auto" loop></audio>
+  <div class="sound-stack">
+    <div class="sound-wrap alt" id="soundWrap2">
+      <button class="sound-logo idle" id="soundLogo2" aria-label="اضغط للتشغيل" title="اضغط للتشغيل">
+        <span class="wave"></span><span class="wave"></span><span class="wave"></span><span class="wave"></span>
+        <img src="assets/logo-transparent.png" alt="الشعار الثاني">
+      </button>
+      <span class="sound-label" id="soundLabel2">اضغط للتشغيل <span class="bars"><i></i><i></i><i></i><i></i></span></span>
+    </div>
+    <div class="sound-wrap" id="soundWrap">
+      <button class="sound-logo idle" id="soundLogo" aria-label="اضغط على اللوجو لسماع الشعار" title="اضغط على اللوجو لسماع الشعار">
+        <span class="wave"></span><span class="wave"></span><span class="wave"></span><span class="wave"></span>
+        <img src="assets/logo-transparent.png" alt="شعار">
+      </button>
+      <span class="sound-label" id="soundLabel">اضغط على اللوجو لسماع الشعار <span class="bars"><i></i><i></i><i></i><i></i></span></span>
+    </div>
   </div>
 
   <script>
-    // صوت الشعار: يحاول يشتغل تلقائياً، ولو المتصفح منع ذلك يشتغل عند أول ضغطة، وكمان عند الضغط على الشعار.
+    // أصوات الشعارات: كل دايرة بتشغّل صوت وبيعيد نفسه، ولما واحد يشتغل التاني بيقف.
     (function () {
-      const audio = document.getElementById('logoSound');
-      const btn = document.getElementById('soundLogo');
-      const introLogo = document.querySelector('.portal img');
-      let started = false;
-
-      const wrap = document.getElementById('soundWrap');
-      const label = document.getElementById('soundLabel');
       const bars = '<span class="bars"><i></i><i></i><i></i><i></i></span>';
-      function setState(on) {
-        btn.classList.toggle('playing', on);
-        btn.classList.toggle('idle', !on);
-        wrap.classList.toggle('on', on);
-        label.innerHTML = (on ? 'اضغط على اللوجو للإيقاف ' : 'اضغط على اللوجو لسماع الشعار ') + bars;
-      }
-      label.addEventListener('click', () => btn.click());
-      audio.addEventListener('play', () => setState(true));
-      audio.addEventListener('pause', () => setState(false));
-      audio.addEventListener('ended', () => setState(false));
+      const players = [];
 
-      function toggle() {
-        if (audio.paused) { audio.currentTime = 0; audio.play().catch(() => {}); }
-        else { audio.pause(); }
-      }
-      btn.addEventListener('click', e => { e.stopPropagation(); started = true; toggle(); });
-      if (introLogo) introLogo.addEventListener('click', e => { e.stopPropagation(); started = true; toggle(); });
+      function setup(ids, texts) {
+        const audio = document.getElementById(ids[0]);
+        const btn = document.getElementById(ids[1]);
+        const wrap = document.getElementById(ids[2]);
+        const label = document.getElementById(ids[3]);
+        const p = { audio: audio };
+        players.push(p);
 
-      // محاولة التشغيل التلقائي
-      audio.play().then(() => { started = true; }).catch(() => {
-        // لو اتمنع: يشتغل مع أول لمسة أو ضغطة في أي مكان
-        const first = () => { if (!started) { started = true; audio.play().catch(() => {}); } };
-        ['pointerdown', 'keydown', 'touchstart'].forEach(ev => document.addEventListener(ev, first, { once: true }));
+        function setState(on) {
+          btn.classList.toggle('playing', on);
+          btn.classList.toggle('idle', !on);
+          wrap.classList.toggle('on', on);
+          label.innerHTML = (on ? texts[1] : texts[0]) + ' ' + bars;
+        }
+        audio.addEventListener('play', () => {
+          setState(true);
+          players.forEach(o => { if (o !== p && !o.audio.paused) o.audio.pause(); });
+        });
+        audio.addEventListener('pause', () => setState(false));
+        audio.addEventListener('ended', () => setState(false));
+
+        function toggle() {
+          if (audio.paused) { audio.currentTime = 0; audio.play().catch(() => {}); }
+          else { audio.pause(); }
+        }
+        btn.addEventListener('click', e => { e.stopPropagation(); p.started = true; toggle(); });
+        label.addEventListener('click', () => btn.click());
+        p.btn = btn;
+        return p;
+      }
+
+      const first = setup(['logoSound', 'soundLogo', 'soundWrap', 'soundLabel'],
+                          ['اضغط على اللوجو لسماع الشعار', 'اضغط على اللوجو للإيقاف']);
+      setup(['logoSound2', 'soundLogo2', 'soundWrap2', 'soundLabel2'],
+            ['اضغط للتشغيل', 'اضغط للإيقاف']);
+
+      const introLogo = document.querySelector('.portal img');
+      if (introLogo) introLogo.addEventListener('click', e => { e.stopPropagation(); first.started = true; first.btn.click(); });
+
+      // محاولة التشغيل التلقائي للصوت الأول
+      first.audio.play().then(() => { first.started = true; }).catch(() => {
+        const go = (e) => { if (e && e.target && e.target.closest && e.target.closest('.sound-stack')) return; if (!first.started && players.every(o => o.audio.paused)) { first.started = true; first.audio.play().catch(() => {}); } };
+        ['pointerdown', 'keydown', 'touchstart'].forEach(ev => document.addEventListener(ev, go, { once: true }));
       });
     })();
 
