@@ -204,6 +204,12 @@
     .invite strong{color:#8fd13a!important}
     footer{background:#060311;border-top:4px solid;border-image:linear-gradient(90deg,var(--pink),var(--yel),var(--lime),var(--cyan),var(--purple)) 1}
     .footer-brand span{color:var(--cyan)}
+    /* زر حجز التذاكر */
+    .buy-btn{display:inline-flex;align-items:center;justify-content:center;gap:10px;margin-top:22px;padding:15px 34px;border-radius:99px;font:900 19px Cairo,Arial,sans-serif;color:#fff;background:linear-gradient(90deg,var(--pink),var(--orange));box-shadow:0 8px 26px rgba(194,24,91,.55);border:2px solid rgba(255,255,255,.25);animation:buyPulse 2s ease-in-out infinite;transition:filter .2s}
+    .buy-btn:hover{filter:brightness(1.12);transform:translateY(-3px)}
+    @keyframes buyPulse{50%{transform:scale(1.05);box-shadow:0 10px 34px rgba(217,105,10,.7)}}
+    .navlinks a.nav-buy{background:linear-gradient(90deg,var(--pink),var(--orange));color:#fff}
+    .invite .buy-btn{margin-top:26px}
   </style>
 </head>
 <body>
@@ -232,7 +238,7 @@
     <nav>
       <a class="brand" href="#home">على فين؟ <span>LIGHT UP</span></a>
       <div class="navlinks" id="navlinks">
-        <a href="#home">الرئيسية</a><a href="#program">برنامج الكرنفال</a><a href="#video">فيديو الكرنفال</a>
+        <a href="#home">الرئيسية</a><a href="#program">برنامج الكرنفال</a><a href="#video">فيديو الكرنفال</a><a class="nav-buy" href="https://bishoygeorgerezk-afk.github.io/tickets-3la-fen/" target="_blank" rel="noopener">🎟️ احجز تذكرتك</a>
       </div>
       <button class="menu-btn" id="menuBtn" aria-label="فتح القائمة">☰</button>
     </nav>
@@ -263,6 +269,7 @@
           <div class="timebox"><b id="minutes">--</b><span>دقائق</span></div>
           <div class="timebox"><b id="seconds">--</b><span>ثواني</span></div>
         </div>
+        <a class="buy-btn" href="https://bishoygeorgerezk-afk.github.io/tickets-3la-fen/" target="_blank" rel="noopener">🎟️ احجز تذكرتك الآن</a>
       </div>
     </div>
 
@@ -302,6 +309,7 @@
       <h2>مستنيينك… على فين؟</h2>
       <p>يتشرف اجتماع الشباب والخريجين بدعوة نيافتك لحضور كرنفال <strong style="color:#ffca69">على فين — Light Up</strong>.</p>
       <div class="date-pill">السبت 5 / 12 / 2026</div>
+      <a class="buy-btn" href="https://bishoygeorgerezk-afk.github.io/tickets-3la-fen/" target="_blank" rel="noopener">🎟️ احجز تذكرتك الآن</a>
     </div>
   </main>
 
